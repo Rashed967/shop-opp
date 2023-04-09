@@ -1,17 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
+
+
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Home from './components/Home/Home'
+import Main from './components/Main/Main';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Main></Main>,
+    children : [
+     {
+      path : "/",
+      element : <Home></Home>,
+      loader : () => fetch('products.json')
+     }
+    ]
   },
 ]);
 
